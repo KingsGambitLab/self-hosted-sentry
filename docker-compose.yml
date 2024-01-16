@@ -72,6 +72,8 @@ x-sentry-defaults: &sentry_defaults
     SENTRY_MAX_EXTERNAL_SOURCEMAP_SIZE:
     # Set this value if you plan on using the Suggested Fix Feature
     OPENAI_API_KEY:
+  env_file:
+      - .env
   volumes:
     - "sentry-data:/data"
     - "./sentry:/etc/sentry"
@@ -310,8 +312,6 @@ services:
     environment:
       SENTRY_CONF: '/etc/sentry'
       SNUBA: 'http://snuba-api:1218'
-    env_file:
-      - .env
   cron:
     <<: *sentry_defaults
     command: run cron
