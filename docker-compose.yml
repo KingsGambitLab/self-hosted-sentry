@@ -223,10 +223,10 @@ services:
     entrypoint: ["/usr/bin/geoipupdate", "-d", "/sentry", "-f", "/sentry/GeoIP.conf"]
     volumes:
       - "./geoip:/sentry"
+    env_file:
+      - .env
   snuba-api:
     <<: *snuba_defaults
-  env_file:
-    - .env
   # Kafka consumer responsible for feeding events into Clickhouse
   snuba-consumer:
     <<: *snuba_defaults
