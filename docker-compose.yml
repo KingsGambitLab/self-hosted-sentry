@@ -73,7 +73,7 @@ x-sentry-defaults: &sentry_defaults
     # Set this value if you plan on using the Suggested Fix Feature
     OPENAI_API_KEY:
   env_file:
-      - .env
+    - .env
   volumes:
     - "sentry-data:/data"
     - "./sentry:/etc/sentry"
@@ -225,6 +225,8 @@ services:
       - "./geoip:/sentry"
   snuba-api:
     <<: *snuba_defaults
+  env_file:
+    - .env
   # Kafka consumer responsible for feeding events into Clickhouse
   snuba-consumer:
     <<: *snuba_defaults
